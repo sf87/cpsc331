@@ -23,6 +23,7 @@ public class TreapTest1 {
       Test.testInsert(T, i, 19-i, true);
       i = i + 1;
     }
+  
     
     Test.testSearch(T, -1, false);
     i = 0;

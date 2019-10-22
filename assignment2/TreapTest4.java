@@ -44,7 +44,8 @@ public class TreapTest4 {
       };
       i = i + 1;
     }
-    
+
+
     System.out.println("");
     checkContents(T, contents);
     System.out.println("");

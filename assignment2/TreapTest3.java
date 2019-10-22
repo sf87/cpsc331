@@ -3,9 +3,10 @@ package cpsc331.assignment2;
 import java.util.NoSuchElementException;
 import cpsc331.collections.ElementFoundException;
 import cpsc331.assignment2.Treap;
+import cpsc331.assignment2.RSeq;
 import cpsc331.assignment2.TreapUtilities;
 
-public class TreapTest2 {
+public class TreapTest3 {
 
   public static void main(String[] args) {
   
@@ -18,12 +19,13 @@ public class TreapTest2 {
                        = new TreapUtilities<Integer, Integer>();
     Test.testTree(T);
     
+    RSeq pSeq = new RSeq(100);
+    
     int  i = 0;
     while (i < 20) {
-      Test.testInsert(T, i, i, true);
+      Test.testInsert(T, i, pSeq.next(), true);
       i = i + 1;
     }
-    
     Test.testSearch(T, -1, false);
     i = 0;
     while (i < 20) {
