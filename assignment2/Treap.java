@@ -240,6 +240,20 @@ public class Treap<E extends Comparable<E>, P extends Comparable<P>> {
   
   private void leftRotate (TreapNode z) {
       
+      TreapNode parent = z;
+      TreapNode child = z.right();
+      TreapNode tOne = z.left();
+      TreapNode tTwo = child.left();
+      TreapNode tThree = child.right();
+
+      //I know this is confusing but
+      z = child;
+      z.parent = parent.parent();
+
+      z.left = parent;
+      z.right = tThree;
+      z.left.left = tOne;
+      z.right.right = tTwo;
       
 
   }
