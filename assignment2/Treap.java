@@ -296,10 +296,10 @@ public class Treap<E extends Comparable<E>, P extends Comparable<P>> {
       z.right.parent = z;
 
       z.right.left = tTwo;
-      z.right.left.parent = right;
+      z.right.left.parent = z.right;
 
       z.right.right = tThree;
-      Z.right.right.parent = right;
+      z.right.right.parent = z.right;
   
   }
   
@@ -380,30 +380,31 @@ public class Treap<E extends Comparable<E>, P extends Comparable<P>> {
   //    is not the root, then the priority of this new leaf may be
   //    greater than the priority of its parent.
   
-  private TreapNode add (E key, P priority, TreapNode x)
-                                     throws ElementFoundException {
+  private TreapNode add (E key, P priority, TreapNode x) throws ElementFoundException {
                                      
-      if(x.element().compareTo(key) == 0) x.priority = priority;
-      else if (x.element().compareTo(key) == -1){
-	  if(x.right()== null){
-	      x.right = new TreapNode(key, priority);
-	  }
-	  else{
-	      add(key, priority, x.right());
-	  }
-      }
-      else if (x.element().compareTo(key)==1){
-	  if(x.left()==null){
-	      x.left = new TreapNode(key, priority);
-	  }
-	  else{
-	      add(key, priority, x.left());
-	  }
-      }
-			     
 
+    if (x.element().compareTo(key) == -1){
+	System.out.println("key < element");
+      if(x.right()== null){
+        x.right = new TreapNode(key, priority);
+        return x.right;
+  
+      }else{
+        add(key, priority, x.right());
+      }
+
+    }else if (x.element().compareTo(key)==1){
+	System.out.println("key > element ");
+      if(x.left()==null){
+        x.left = new TreapNode(key, priority);
+        return x.left;
+
+      }else{
+        add(key, priority, x.left());
+      }
+    }
+    
     throw new ElementFoundException("This lins should be replaced.");
-                                     
   }
   
   // Restores Treap properties after insertion of a new node
@@ -432,8 +433,19 @@ public class Treap<E extends Comparable<E>, P extends Comparable<P>> {
   //    Treap properties given above.
   
   private void restoreAfterInsertion (TreapNode x) {
-  
-    // For You To Complete
+    System.out.println(x.priority()+ " " + x.parent().priority() + " "+ x.priority().compareTo(x.parent().priority())  );
+    //while x's priority is greater than its pparents
+    while(x.priority().compareTo(x.parent().priority()) == 1){
+      
+      //if x's element is greater than its  parents then right rotate
+      if(x.element().compareTo(x.parent().element()) == 1){
+        rightRotate(x.parent);
+      }
+      else{
+        leftRotate(x.parent);
+      }
+
+    }
     
   }
   
