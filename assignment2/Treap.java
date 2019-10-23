@@ -251,9 +251,16 @@ public class Treap<E extends Comparable<E>, P extends Comparable<P>> {
       z.parent = parent.parent();
 
       z.left = parent;
+      z.left.parent = z;
+
       z.right = tThree;
+      z.right.parent = z;
+
       z.left.left = tOne;
-      z.right.right = tTwo;
+      z.left.left.parent = z.left;
+
+      z.left.right = tTwo;
+      z.left.right.parent = z.left; 
       
 
   }
@@ -273,20 +280,26 @@ public class Treap<E extends Comparable<E>, P extends Comparable<P>> {
   private void rightRotate (TreapNode z) {
   
       TreapNode parent = z;
-      TreapNode child = z.right();
-      TreapNode tOne = z.left();
-      TreapNode tTwo = child.left();
-      TreapNode tThree = child.right();
+      TreapNode child = z.left();
+      TreapNode tOne = child.left();
+      TreapNode tTwo = child.right();
+      TreapNode tThree = parent.right();
 
       //I know this is confusing but
       z = child;
       z.parent = parent.parent();
 
       z.left = tOne;
+      z.left.parent = z;
+
       z.right = parent;
+      z.right.parent = z;
+
       z.right.left = tTwo;
+      z.right.left.parent = right;
+
       z.right.right = tThree;
-  
+      Z.right.right.parent = right;
   
   }
   
